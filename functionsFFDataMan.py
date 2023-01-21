@@ -27,6 +27,7 @@ def pred(df, train,targ,predictor_year):
 
     seas=df.reset_index()
     targ_vals=seas[targ].to_frame()
+    targ_vals=targ_vals.apply(pd.to_numeric, errors='coerce')
 
     xarg_vals=seas[train]
     col_o_1s=pd.DataFrame(index=np.arange(len(xarg_vals)),columns=['1cols'])
@@ -45,7 +46,7 @@ def pred(df, train,targ,predictor_year):
     rooksvals['1col']=col_o_1s
     
     rookpred=np.dot(rooksvals,w)
-    output_data=['Player','Draft Year']
+    output_data=['Player','Draft Year','School']
     name_store=rooks[output_data]
     predicted=pd.DataFrame(pd.np.column_stack([name_store,rookpred]))
 

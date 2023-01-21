@@ -11,9 +11,9 @@ database=pd.read_excel("New"+POS+"Prospects.xlsx")
 pros=DataCleans(database,0)
 
 t_columns='AVG PPG YR 1-3'
-training_columns=['BMI','Height','Weight','Arm Length','DR','AVGREC Yards/TM PA','AVGTouch/Team Attempt']
+training_columns=['BMI','DP','Draft Age','AVGREC Yards/TM PA','AVGTouch/Team Attempt']
 
-years_to_test=[2018,2019,2020,2021,2022]
+years_to_test=np.arange(2003,2023)
 output=pred(pros,training_columns,t_columns,years_to_test)
 
 print('wait')
