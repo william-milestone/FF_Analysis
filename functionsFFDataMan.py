@@ -40,13 +40,13 @@ def pred(df, train,targ,predictor_year):
 
     #Now pull rookies 
     rooks=dfstore
-    rooks=rooks.loc[(rooks['Draft Year']==predictor_year) & (rooks['DR']!='UDFA')]
+    rooks=rooks.loc[(rooks['Draft Year'].isin(predictor_year)) & (rooks['DR']!='UDFA')]
     rooksvals=rooks[train]
     rooksvals['1col']=col_o_1s
     
     rookpred=np.dot(rooksvals,w)
-
-    name_store=rooks['Player']
+    output_data=['Player','Draft Year']
+    name_store=rooks[output_data]
     predicted=pd.DataFrame(pd.np.column_stack([name_store,rookpred]))
 
     return predicted
